@@ -1,0 +1,38 @@
+
+-- Ensure this is in a LocalScript, preferably in StarterPlayerScripts or StarterCharacterScripts
+
+local player = game.Players.LocalPlayer
+local toolName = "Normal Punch"
+
+-- Function to equip and use the tool
+local function equipAndUseTool()
+    if player.Character and player.Backpack:FindFirstChild(toolName) then
+        local tool = player.Backpack:FindFirstChild(toolName)
+        tool.Parent = player.Character -- Equips the tool
+
+        -- Simulate a tool activation, like a click
+        if tool:FindFirstChild("Activate") and tool.Activate:IsA("BindableEvent") then
+            tool.Activate:Fire() -- Use Fire() to simulate tool activation
+         end
+    end
+end
+
+local function onCharacterAdded(character)
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.Died:Connect(function()
+        print("Player died, re-equipping tool on respawn")
+    end)
+
+    -- Equip and use tool, then wait before stopping animations and playing animation
+    equipAndUseTool()
+    
+end
+
+-- Connect to the CharacterAdded event
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Check if the character is already loaded
+if player.Character then
+    equipAndUseTool()
+    
+end
