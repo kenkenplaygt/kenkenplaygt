@@ -52,7 +52,7 @@ local function onCharacterAdded(character)
     equipAndUseTool()
     wait(0.3)
     stopAnimations(character)
-    wait(3.4)
+    wait(0.1)
     playAnimation()
 end
 
