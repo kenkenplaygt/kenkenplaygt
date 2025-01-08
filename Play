@@ -1,0 +1,74 @@
+-- Ensure this is in a LocalScript, preferably in StarterPlayerScripts or StarterCharacterScripts
+
+local player = game.Players.LocalPlayer
+local toolName = "Shove"
+
+-- Function to equip and use the tool
+local function equipAndUseTool()
+    if player.Character and player.Backpack:FindFirstChild(toolName) then
+        local tool = player.Backpack:FindFirstChild(toolName)
+        tool.Parent = player.Character -- Equips the tool
+
+        -- Simulate a tool activation, like a click
+        if tool:FindFirstChild("Activate") and tool.Activate:IsA("BindableEvent") then
+            tool.Activate:Fire() -- Use Fire() to simulate tool activation
+        end
+    end
+end
+
+-- Function to stop animations
+local function stopAnimations(character)
+    local humanoid = character:FindFirstChildWhichIsA("Humanoid")
+    if humanoid then
+        local animator = humanoid:FindFirstChildOfClass("Animator")
+        if animator then
+            for _, track in pairs(animator:GetPlayingAnimationTracks()) do
+                track:Stop()
+            end
+        end
+    end
+end
+
+-- Function to play the new animation
+local function playAnimation()
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+
+    local anim2 = Instance.new("Animation")
+
+    anim2.AnimationId = "rbxassetid://18181348446"
+
+
+    local playAnim2 = humanoid:LoadAnimation(anim2)
+
+local startTime = 5
+
+    playAnim2:Play()
+end
+
+-- Function to handle character respawn
+local function onCharacterAdded(character)
+    local humanoid = character:WaitForChild("Humanoid")
+    humanoid.Died:Connect(function()
+        print("Player died, re-equipping tool on respawn")
+    end)
+
+    -- Equip and use tool, then wait before stopping animations and playing animation
+    equipAndUseTool()
+    wait(0)
+    stopAnimations(character)
+    wait(0)
+    playAnimation()
+end
+
+-- Connect to the CharacterAdded event
+player.CharacterAdded:Connect(onCharacterAdded)
+
+-- Check if the character is already loaded
+if player.Character then
+    equipAndUseTool()
+    wait(0.1)
+    stopAnimations(player.Character)
+    wait(0)
+    playAnimation()
+end
