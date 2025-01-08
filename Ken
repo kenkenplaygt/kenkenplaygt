@@ -62,8 +62,8 @@ player.CharacterAdded:Connect(onCharacterAdded)
 -- Check if the character is already loaded
 if player.Character then
     equipAndUseTool()
-    wait(0.3)
+    wait(0.2)
     stopAnimations(player.Character)
-    wait(3.4)
+    wait(0.1)
     playAnimation()
 end
