@@ -1,7 +1,7 @@
 
 loadstring(game:HttpGet('https://raw.githubusercontent.com/kenkenplaygt/kenkenplaygt/refs/heads/main/Play'))()
 
-task.wait(0.3)
+task.wait(0.2)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
@@ -52,6 +52,17 @@ end
 
 
 moveForward()
-  
+task.wait(0)
+  local Test = game:GetService("ReplicatedStorage").Resources.Fang.OneInch2.dash3.VFX
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+
+
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.fromRGB(0, 120, 255)) -- Set color to purple
+         child:Emit(20)
+    end
+end
 task.wait(0)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/kenkenplaygt/kenkenplaygt/refs/heads/main/Ma'))()
