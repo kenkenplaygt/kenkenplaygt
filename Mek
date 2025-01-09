@@ -9,9 +9,9 @@ animation.AnimationId = "rbxassetid://" .. animationId
 local animationTrack = humanoid:LoadAnimation(animation)
 animationTrack:Play()
 task.wait(0)
-local 1 = Game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier["Core"].Appear:Clone()
-1.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
-for _, child in ipairs(1:GetChildren()) do
+local e = Game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier["Core"].EndEmit.Ground:Clone()
+e.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+for _, child in ipairs(e:GetChildren()) do
     if child:IsA("ParticleEmitter") then
         child:Emit(2)
     end
