@@ -16,7 +16,7 @@ for _, child in ipairs(1:GetChildren()) do
         child:Emit(2)
     end
 end
-
+task.wait(0)
 local 2 = Game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier["Core"].EndEmit.Ground:Clone()
 2.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
 for _, child in ipairs(2:GetChildren()) do
