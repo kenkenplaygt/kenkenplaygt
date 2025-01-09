@@ -9,7 +9,7 @@ animation.AnimationId = "rbxassetid://" .. animationId
 local animationTrack = humanoid:LoadAnimation(animation)
 animationTrack:Play()
 
-task.wait(0.2)
+task.wait(0)
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
