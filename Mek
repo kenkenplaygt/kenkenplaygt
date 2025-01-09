@@ -1,4 +1,4 @@
-local animationId = "17838006839"
+local animationId = "112620365240235"
 
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
