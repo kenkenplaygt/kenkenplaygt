@@ -1,3 +1,12 @@
+local StarterGui = game:GetService("StarterGui")
+wait(0)
+StarterGui:SetCore("SendNotification", {
+  Title = "just dance!!!",
+  Text = "don't move if you use dance pls ",
+  Button1 = "Alright!",
+  Duration = 10
+})
+task.wait(0)
 local function GetGitSound(GithubSnd,SoundName) --idk what is this for anyway
     local url=GithubSnd
     if not isfile(SoundName..".mp3") then
