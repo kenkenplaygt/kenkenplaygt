@@ -1,0 +1,30 @@
+local function GetGitSound(GithubSnd,SoundName) --idk what is this for anyway
+    local url=GithubSnd
+    if not isfile(SoundName..".mp3") then
+        writefile(SoundName..".mp3", game:HttpGet(url))
+    end
+    local sound=Instance.new("Sound")
+    sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+    return sound
+end
+local Clock = GetGitSound("https://github.com/Kenjihin69/Kenjihin69/blob/main/Screen_Recording_20250112_215346.mp3?raw=true","baby1")
+
+Clock.Parent = workspace
+
+Clock.Volume = 1
+Clock.TimePosition = 0
+
+Clock:Play()
+task.wait(0)
+local animationId = "13935172019"
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://" .. animationId
+local animationTrack = humanoid:LoadAnimation(animation)
+animationTrack:Play()
+task.wait(25.8)
+animationTrack:Stop()
