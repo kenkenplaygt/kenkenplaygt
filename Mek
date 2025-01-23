@@ -81,3 +81,5 @@ child.Color = ColorSequence.new(Color3.fromRGB(0, 120, 255)) -- Set color to pur
 end
 task.wait(0)
 loadstring(game:HttpGet('https://raw.githubusercontent.com/kenkenplaygt/kenkenplaygt/refs/heads/main/Ma'))()
+task.wait(0.2)
+animationTrack:Stop()
