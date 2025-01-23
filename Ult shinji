@@ -14,7 +14,7 @@ local baseButton = hotbarFrame:FindFirstChild("1").Base
 local ToolName = baseButton.ToolName
 
 
-ToolName.Text = "???"
+ToolName.Text = "Seal Breaker"
 
 
 local player = game.Players.LocalPlayer
