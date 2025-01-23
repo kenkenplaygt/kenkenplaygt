@@ -50,7 +50,7 @@ local baseButton = hotbarFrame:FindFirstChild("3").Base
 local ToolName = baseButton.ToolName
 
 
-ToolName.Text = "???"
+ToolName.Text = "Draconic Glory"
 
 
 local player = game.Players.LocalPlayer
@@ -68,7 +68,7 @@ local baseButton = hotbarFrame:FindFirstChild("4").Base
 local ToolName = baseButton.ToolName
 
 
-ToolName.Text = "???"
+ToolName.Text = "NONE"
 
 
 local Players = game:GetService("Players")
