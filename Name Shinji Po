@@ -68,7 +68,7 @@ local baseButton = hotbarFrame:FindFirstChild("4").Base
 local ToolName = baseButton.ToolName
 
 
-ToolName.Text = "Barrier Dragon"
+ToolName.Text = "Dragon Barrier"
 
 
 local Players = game:GetService("Players")
