@@ -1,0 +1,86 @@
+local animationId = "112620365240235"
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://" .. animationId
+local animationTrack = humanoid:LoadAnimation(animation)
+animationTrack:Play()
+task.wait(0)
+local e = Game.ReplicatedStorage.Resources.Sorcerer.LimitlessBarrier["Core"].EndEmit.Ground:Clone()
+e.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+for _, child in ipairs(e:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+        child:Emit(2)
+    end
+end
+task.wait(0.7)
+local Test = game:GetService("ReplicatedStorage").Resources.Fang.OneInch2.dash3.VFX
+
+local test = Test:Clone()
+test.Parent = game.Players.LocalPlayer.Character["HumanoidRootPart"]
+test.CFrame = test.CFrame * CFrame.new(0, -4, 9)
+for _, child in ipairs(test:GetChildren()) do
+    if child:IsA("ParticleEmitter") then
+child.Color = ColorSequence.new(Color3.fromRGB(0, 125, 255)) -- Set color to purple
+        child:Emit(1)
+        child.Enabled = true
+    end
+end
+task.wait(0)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+local camera = workspace.CurrentCamera  -- Reference to the camera
+
+
+local dashSpeed = 200
+local dashDuration = 3
+local isDashing = false
+
+
+local dashAnim = Instance.new("Animation")
+dashAnim.AnimationId = "rbxassetid://0"
+local animTrack = humanoid:LoadAnimation(dashAnim)
+ 
+
+local function moveForward()
+    if isDashing then return end
+    isDashing = true
+
+    wait(0)
+
+
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)  -- Max force to apply the movement
+    bodyVelocity.Parent = humanoidRootPart
+
+    local dashEndTime = tick() + dashDuration  -- Time when dash should end
+
+    while tick() < dashEndTime do
+       
+        local cameraDirection = camera.CFrame.LookVector
+        local dashDirection = Vector3.new(cameraDirection.X, 0, cameraDirection.Z).unit
+
+        bodyVelocity.Velocity = dashDirection * dashSpeed
+
+        wait(0)  
+    end
+
+ 
+    animTrack:Stop()
+
+  
+    bodyVelocity:Destroy()
+    isDashing = false
+end
+
+
+moveForward()
+task.wait(0)
+animationTrack:Stop()
+task.wait(0)
+test:Destroy()
